@@ -1,6 +1,7 @@
 
-import "./css/Navigation.css";
+import "../css/Navigation.css";
 import { Link } from "react-router-dom";
+
 
 export default function Navigation() {
   return (

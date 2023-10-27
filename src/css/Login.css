@@ -50,6 +50,17 @@
   border-radius: 5px;
 }
 
+.link-mdp a,.link-inscri a{
+  width:100%;
+  
+  margin:10px auto;
+  
+  padding:5px;
+}
+.link-mdp a,.link-inscri a{
+  color:rgb(43, 52, 131);
+}
+
 /* Styles for the "Se connecter" button */
 .login-page button {
   width: 100%;

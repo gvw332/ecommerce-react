@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./css/Login.css";
+import "../css/Login.css";
+import { Link } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -21,6 +22,14 @@ function Login() {
                     <label>Mot de passe</label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
+                <div className="link-mdp">
+                    <Link to="/">Mot de passe oublié ?</Link>
+                </div>
+                <br />
+                <div className="link-inscri">                    
+                    <Link to="/inscription">Pas encore inscrit ?</Link>
+                </div>
+                <br />
                 <button onClick={handleLogin}>Se connecter</button>
             </form>
         </div>
