@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Inscription.css";
+import "./css/Inscription.css";
 
 function Inscription() {
   const [firstName, setFirstName] = useState("");
