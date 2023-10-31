@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../css/Addproduct.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Dropzone from 'react-dropzone';
 
 
 function Addproduct() {
@@ -8,6 +10,15 @@ function Addproduct() {
     const [price, setPrice] = useState('');
     const [details, setDetails] = useState('');
     const [image, setImage] = useState(null);
+    const navigate = useNavigate();
+    const handleDrop = (acceptedFiles) => {
+        
+        if (acceptedFiles.length > 0) {
+          setImage(acceptedFiles[0].name);
+        }
+       
+      };
+      
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,15 +27,15 @@ function Addproduct() {
         formData.append('title', title);
         formData.append('price', price);
         formData.append('details', details);
- 
- 
-        axios.post('http://localhost/api-php-react/ajout-produit',formData)
+
+
+        axios.post('http://localhost/api-php-react/ajout-produit', formData)
             .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.error("Erreur lors de la récupération des données : " + error);
-        });
+                navigate('/')
+            })
+            .catch((error) => {
+                console.error("Erreur lors de la récupération des données : " + error);
+            });
     }
     return (
         <div className="Addproduct-page">
@@ -32,7 +43,15 @@ function Addproduct() {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Image:</label>
-                    <input type="text" onChange={(e) => setImage(e.target.value)} />
+
+                    <Dropzone onDrop={handleDrop} accept="image/*" single>
+                        {({ getRootProps, getInputProps }) => (
+                            <div {...getRootProps()}>
+                                <input {...getInputProps()} />
+                                {image ? <p>Image sélectionnée : {image.name}</p> : <p>Sélectionnez une image</p>}
+                            </div>
+                        )}
+                    </Dropzone>
                 </div>
                 <div>
                     <label>Titre:</label>
@@ -60,7 +79,7 @@ function Addproduct() {
                 <button type="submit">Enregistrer</button>
             </form>
         </div>
-    );
+    )
 }
 
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/Accueil.css";
-
+import Card from "../components/Card";
 import { Link } from "react-router-dom";
 
 function Accueil() {
@@ -37,15 +37,23 @@ function Accueil() {
             {loading ? (
                 <p>Chargement en cours...</p>
             ) : (
-                <ul>
-                    {data.map((item) => (
-                        <li key={item.id}>{item.title}</li>
-                        // Assurez-vous d'adapter la structure des données à votre cas d'utilisation
-                    ))};
-                </ul>
+                <div className="cards-container">
+                    
+                        {data.map((item, key) => (
+                            <Card
+                                key={key}
+                                image={`images/${item.image}`}
+                                title={item.title}
+                                price={item.price}
+                                details={item.details}
+                                id={item.id}
+                            />
+                        ))}
+                    
+                </div>
             )}
         </div>
-    );
+    )
 }
 
 export default Accueil;

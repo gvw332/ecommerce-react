@@ -1,3 +1,11 @@
 .shopping a{
     color:black; 
 }
+
+.cards-container{
+    width: 100%;
+    display:flex; 
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:15px;
+}
