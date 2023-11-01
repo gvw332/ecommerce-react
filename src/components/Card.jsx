@@ -1,5 +1,8 @@
 import React from 'react';
 import "../css/Card.css";
+
+
+
 const Card = ({ image, title, price, details }) => {
   const addToCart = () => {
     // Logique pour ajouter au panier

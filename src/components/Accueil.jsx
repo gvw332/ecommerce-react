@@ -4,6 +4,7 @@ import "../css/Accueil.css";
 import Card from "../components/Card";
 import { Link } from "react-router-dom";
 
+
 function Accueil() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -38,8 +39,8 @@ function Accueil() {
                 <p>Chargement en cours...</p>
             ) : (
                 <div className="cards-container">
-                    
-                        {data.map((item, key) => (
+                    {Array.isArray(data) ? (
+                        data.map((item, key) => (
                             <Card
                                 key={key}
                                 image={`images/${item.image}`}
@@ -48,8 +49,10 @@ function Accueil() {
                                 details={item.details}
                                 id={item.id}
                             />
-                        ))}
-                    
+                        ))
+                    ) : (
+                        <p>Les données ne sont pas un tableau valide.</p>
+                    )}
                 </div>
             )}
         </div>
