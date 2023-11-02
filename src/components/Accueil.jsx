@@ -3,11 +3,13 @@ import axios from "axios";
 import "../css/Accueil.css";
 import Card from "../components/Card";
 import { Link } from "react-router-dom";
+import Details from "../components/Details";
 
 
 function Accueil() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    
 
     useEffect(() => {
         // Utilisez Axios pour récupérer les données depuis votre API
@@ -24,6 +26,10 @@ function Accueil() {
         navigate = useNavigate("/addproduct");
 
     };
+    const ouvrirDetails = (item) => {
+        
+        console.log(item);
+    }
 
 
 
@@ -41,20 +47,25 @@ function Accueil() {
                 <div className="cards-container">
                     {Array.isArray(data) ? (
                         data.map((item, key) => (
-                            <Card
-                                key={key}
-                                image={`images/${item.image}`}
-                                title={item.title}
-                                price={item.price}
-                                details={item.details}
-                                id={item.id}
-                            />
+                            <Link to={`/details`} key={key} onClick={() => ouvrirDetails(item)}>
+                                
+                                <Card                                    
+                                    key={key}
+                                    image={`images/${item.image}`}
+                                    title={item.title}
+                                    price={item.price}
+                                    details={item.details}
+                                    id={item.id}                                    
+                                />
+                            </Link>
+
                         ))
                     ) : (
                         <p>Les données ne sont pas un tableau valide.</p>
                     )}
                 </div>
             )}
+
         </div>
     )
 }
