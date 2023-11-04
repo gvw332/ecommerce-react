@@ -26,11 +26,6 @@ function Accueil() {
         navigate = useNavigate("/addproduct");
 
     };
-    const ouvrirDetails = (item) => {
-        
-        console.log(item);
-    }
-
 
 
 
@@ -47,7 +42,7 @@ function Accueil() {
                 <div className="cards-container">
                     {Array.isArray(data) ? (
                         data.map((item, key) => (
-                            <Link to={`/details`} key={key} onClick={() => ouvrirDetails(item)}>
+                            <Link to={`/details/${item.id}`} key={key}>
                                 
                                 <Card                                    
                                     key={key}
