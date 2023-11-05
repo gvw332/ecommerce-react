@@ -1,0 +1,66 @@
+/* Style pour l'élément parent "element-panier" */
+.element-panier {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Style pour le titre "Panier" */
+.element-panier h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* Style pour la liste d'articles */
+.element-panier ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Style pour chaque article du panier */
+.element-panier li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+/* Style pour les boutons d'ajout et de retrait */
+.element-panier .btn-ligne {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.element-panier .btn-ligne:hover {
+    background-color: #0056b3;
+}
+
+/* Style pour le bouton de suppression */
+.element-panier .btn-remove {
+    background-color: #FF0000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.element-panier .btn-remove:hover {
+    background-color: #b30000;
+}
+
+/* Style pour le total du panier */
+.element-panier .Total-du-panier {
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+.element-panier .Panier-vide {
+    font-size: 1.5rem;
+    text-align: center;
+}

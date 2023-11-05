@@ -1,24 +1,22 @@
 import React from 'react';
 import "../css/Card.css";
+import { useCart } from 'react-use-cart';
 
 
+const Card = (props) => {
+  const { addItem } = useCart();
 
-const Card = ({ image, title, price}) => {
-  const addToCart = () => {
-    // Logique pour ajouter au panier
-  };
- 
   return (
-    
+
     <div className="card">
-      <img src={image} alt={title} />
-      <h3>{title}</h3>
-      <p>{price} €</p>            
-      <button onClick={addToCart}>Ajouter au panier</button>
+      <img src={props.image} alt={props.title} />
+      <h3>{props.title}</h3>
+      <p>{props.price} €</p>
+      <button onClick={() => addItem(props.item)}>Ajouter au panier</button>
     </div>
   );
 
-  
+
 };
 
 export default Card;

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../css/Accueil.css";
 import Card from "../components/Card";
-import { Link } from "react-router-dom";
-import Details from "../components/Details";
+
+
 
 
 function Accueil() {
@@ -22,10 +23,7 @@ function Accueil() {
                 console.error("Erreur lors de la récupération des données : " + error);
             });
     }, []); // Le tableau vide [] signifie que cela s'exécute une seule fois après le rendu initial
-    const createProduct = () => {
-        navigate = useNavigate("/addproduct");
 
-    };
 
 
 
@@ -42,17 +40,19 @@ function Accueil() {
                 <div className="cards-container">
                     {Array.isArray(data) ? (
                         data.map((item, key) => (
-                            <Link to={`/details/${item.id}`} key={key}>
+                            // <Link to={`/details/${item.id}`} key={key}>
                                 
-                                <Card                                    
+                                <Card  
+                                    id={item.id}                                   
                                     key={key}
                                     image={`images/${item.image}`}
                                     title={item.title}
                                     price={item.price}
                                     details={item.details}
-                                    id={item.id}                                    
+                                    item={item}
+                                                                       
                                 />
-                            </Link>
+                            // </Link>
 
                         ))
                     ) : (
