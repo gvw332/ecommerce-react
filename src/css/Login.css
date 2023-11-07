@@ -77,3 +77,10 @@
 .login-page button:hover {
   background: #0056b3;
 }
+
+.error{
+  color:red;
+  font-size: 1.2em;
+  text-align: center;
+  padding:10px;
+}

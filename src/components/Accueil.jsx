@@ -30,8 +30,9 @@ function Accueil() {
 
     return (
         <div>
-            <Link to="/add-product">
-                <button>Ajouter un produit</button>
+            <Link to="/add-product" className="btn-ajout-produit">
+                <button>Ajouter un produit<br />+</button>
+                
             </Link>
             <h1>Accueil - Liste des produits</h1>
             {loading ? (
@@ -40,7 +41,7 @@ function Accueil() {
                 <div className="cards-container">
                     {Array.isArray(data) ? (
                         data.map((item, key) => (
-                            // <Link to={`/details/${item.id}`} key={key}>
+                            
                                 
                                 <Card  
                                     id={item.id}                                   
@@ -49,10 +50,9 @@ function Accueil() {
                                     title={item.title}
                                     price={item.price}
                                     details={item.details}
-                                    item={item}
-                                                                       
+                                    item={item}                                                                       
                                 />
-                            // </Link>
+                            
 
                         ))
                     ) : (

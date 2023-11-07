@@ -37,6 +37,12 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+  .Addproduct-page .ajout-image img{
+    width:auto;
+    height:300px;
+    
+  }
+
   
   .Addproduct-page button {
     background-color: #007bff;

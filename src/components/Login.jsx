@@ -1,36 +1,76 @@
 import React, { useState } from "react";
 import "../css/Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useUserContext } from "../App";
+
 
 function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+    const [mail, setMail] = useState("");
+    const [mdp, setMdp] = useState("");
+    const [error, setError] = useState("");
+    const [msg, setMsg] = useState("");
+    const { user, setUser } = useUserContext();
 
-    const handleLogin = () => {
-        // Logique de connexion ici (par exemple, envoi des données au serveur)
-    };
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('mail', mail);
+        formData.append('mdp', mdp);
+
+
+        axios.post('http://localhost:80/api-php-react/login/', formData)
+        .then((response) => {
+          // navigate('/dashboard');
+          let user = response.data.user;
+          if (response.data.message === 'Connexion réussie') {
+            setUser({ ...user, someKey: JSON.stringify(user) });
+            // console.log('user: ' + user);
+            navigate('/');
+          } else {
+            setError('Mauvais identifiant');
+          }
+        })
+        .catch((error) => {
+          console.error("Erreur lors de la récupération des données : " + error);
+        });
+    }
 
     return (
         <div className="login-page">
             <h2>Connexion</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="champ-email">
                     <label>Email</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input
+                        type="email"
+                        value={mail}
+                        onChange={(e) => setMail(e.target.value)}
+                    />
                 </div>
                 <div className="champ-mdp">
                     <label>Mot de passe</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input
+                        type="password"
+                        value={mdp}
+                        onChange={(e) => setMdp(e.target.value)}
+                    />
                 </div>
                 <div className="link-mdp">
                     <Link to="/">Mot de passe oublié ?</Link>
                 </div>
                 <br />
-                <div className="link-inscri">                    
+                <div className="link-inscri">
                     <Link to="/inscription">Pas encore inscrit ?</Link>
                 </div>
                 <br />
-                <button onClick={handleLogin}>Se connecter</button>
+                <button>Se connecter</button>
+                <br />
+                <div className="error">{error}</div>
+
             </form>
         </div>
     );

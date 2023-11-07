@@ -49,7 +49,7 @@ function Addproduct() {
     <div className="Addproduct-page">
       <h2>Addproduct</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="ajout-image">
           <label>Image:</label>
           <input
             type="file" name="image"
