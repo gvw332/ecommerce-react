@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../css/Accueil.css";
 import Card from "../components/Card";
-
+import { useUserContext } from "../App";
 
 
 
 function Accueil() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    
+    const { user, setUser } = useUserContext();
+    const isAdmin = (user.niveau === 1);
 
     useEffect(() => {
         // Utilisez Axios pour récupérer les données depuis votre API
@@ -30,10 +31,12 @@ function Accueil() {
 
     return (
         <div>
-            <Link to="/add-product" className="btn-ajout-produit">
-                <button>Ajouter un produit<br />+</button>
-                
-            </Link>
+            { isAdmin &&
+                <Link to="/add-product" className="btn-ajout-produit">
+                    <button>Ajouter un produit<br />+</button>
+                </Link>
+            }
+
             <h1>Accueil - Liste des produits</h1>
             {loading ? (
                 <p>Chargement en cours...</p>
@@ -41,18 +44,18 @@ function Accueil() {
                 <div className="cards-container">
                     {Array.isArray(data) ? (
                         data.map((item, key) => (
-                            
-                                
-                                <Card  
-                                    id={item.id}                                   
-                                    key={key}
-                                    image={`images/${item.image}`}
-                                    title={item.title}
-                                    price={item.price}
-                                    details={item.details}
-                                    item={item}                                                                       
-                                />
-                            
+
+
+                            <Card
+                                id={item.id}
+                                key={key}                                
+                                image={`images/${item.image}`}
+                                title={item.title}
+                                price={item.price}
+                                details={item.details}
+                                item={item}
+                            />
+
 
                         ))
                     ) : (

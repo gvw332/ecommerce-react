@@ -23,20 +23,28 @@ function Login() {
 
 
         axios.post('http://localhost:80/api-php-react/login/', formData)
-        .then((response) => {
-          // navigate('/dashboard');
-          let user = response.data.user;
-          if (response.data.message === 'Connexion réussie') {
-            setUser({ ...user, someKey: JSON.stringify(user) });
-            // console.log('user: ' + user);
-            navigate('/');
-          } else {
-            setError('Mauvais identifiant');
-          }
-        })
-        .catch((error) => {
-          console.error("Erreur lors de la récupération des données : " + error);
-        });
+            .then((response) => {
+                const userData = response.data.user;
+                if (response.data.message === 'Connexion réussie') {
+                    // Créez un objet "niveaux" pour stocker les niveaux de l'utilisateur
+                    const niveaux = {
+                        isAdmin: userData.niveau === 1,
+                        isAuth: userData.niveau >= 1,
+                    };
+                    // Mettez à jour l'objet utilisateur avec les niveaux
+                    const userWithNiveaux = { ...userData, niveaux };
+
+                    // Utilisez setUser pour mettre à jour l'utilisateur avec les niveaux
+                    setUser(userWithNiveaux);
+                    navigate('/');
+                } else {
+                    setError('Mauvais identifiant');
+                }
+            })
+            .catch((error) => {
+                console.error("Erreur lors de la récupération des données : " + error);
+            });
+
     }
 
     return (
