@@ -10,6 +10,8 @@ import Addproduct from "./components/Addproduct";
 import Details from "./components/Details";
 import Panier from "./components/Panier";
 
+
+
 // Créez un contexte pour l'état de l'utilisateur
 const UserContext = React.createContext();
 

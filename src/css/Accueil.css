@@ -1,3 +1,10 @@
+*{
+    
+    height:auto;
+    margin:0;   
+    padding:0;
+}
+
 button{
      font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     
@@ -9,10 +16,15 @@ h1{
     color:black; 
 }
 .btn-ajout-produit button {
-    margin:50px auto;
-    padding:8px;
-    width:100%;
-    font-size: 1.1em;
+    display:flex;
+    margin:auto;
+    padding:5px;
+    text-align: center;
+    background-color: rgba(213, 251, 213, 0.778);
+    width:auto;
+    font-size: 1.2em;
+   
+   
     
 }
 

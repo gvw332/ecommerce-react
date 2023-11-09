@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useCart } from 'react-use-cart';
 import '../css/Panier.css';
 
+
 function Panier() {
     const { items, cartTotal, updateItemQuantity, removeItem } = useCart();
     const [localItems, setLocalItems] = useState(items);
