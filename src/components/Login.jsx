@@ -77,7 +77,7 @@ function Login() {
                 <br />
                 <button>Se connecter</button>
                 <br />
-                <div className="error">{error}</div>
+                <div className="error-login">{error}</div>
 
             </form>
         </div>

@@ -30,8 +30,8 @@ export default function Navigation() {
 
       <div className="auth">
         {(isAuth) &&
-          <div className="bienvenu"><h5>Bienvenu </h5>
-            {user.pseudo}
+          <div className="bienvenue"><h5>Bienvenue à toi {user.pseudo}</h5>
+            
           </div>
         }
         {(isAuth) &&
@@ -44,7 +44,7 @@ export default function Navigation() {
           <Link to="/inscription"><button>Inscription</button></Link>
         }
         <div className="bouton-panier-compteur">
-          <Link to="/panier" className="cart-button"><PiShoppingCartBold /> {totalItems}</Link>
+          <Link to="/panier" className="cart-button"><PiShoppingCartBold className="panier-nav"/><div className="total-panier-nav">{totalItems}</div></Link>
         </div>
       </div>
     </nav>

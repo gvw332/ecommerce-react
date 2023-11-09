@@ -30,14 +30,17 @@ function Accueil() {
 
 
     return (
-        <div>
-            { isAdmin &&
-                <Link to="/add-product" className="btn-ajout-produit">
-                    <button>Ajouter un produit<br />+</button>
-                </Link>
+        <div className="accueil">
+
+            {isAdmin && <div className="btn-ajout-produit">
+                <Link to="/add-product">
+                <button class="custom-btn btn-12"><span>+</span><span>Ajouter un produit</span></button>
+               
+
+                </Link></div>
             }
 
-            <h1>Accueil - Liste des produits</h1>
+            <h1>Liste des produits</h1>
             {loading ? (
                 <p>Chargement en cours...</p>
             ) : (
@@ -48,7 +51,7 @@ function Accueil() {
 
                             <Card
                                 id={item.id}
-                                key={key}                                
+                                key={key}
                                 image={`images/${item.image}`}
                                 title={item.title}
                                 price={item.price}

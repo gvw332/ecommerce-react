@@ -8,6 +8,7 @@
     height: 100vh;
     font-family: Arial, sans-serif;
     background: #f2f2f2;
+    padding-top: 50px;
   }
   
   /* Styles for the title "Inscription" */
@@ -30,7 +31,8 @@
   .inscription-page .champ-prenom,
   .inscription-page .champ-nom,
   .inscription-page .champ-email,
-  .inscription-page .champ-mdp {
+  .inscription-page .champ-mdp,
+  .inscription-page .champ-mdp-bis {
     margin-bottom: 15px;
   }
   
@@ -38,7 +40,8 @@
   .inscription-page .champ-prenom label,
   .inscription-page .champ-nom label,
   .inscription-page .champ-email label,
-  .inscription-page .champ-mdp label {
+  .inscription-page .champ-mdp label 
+  .inscription-page .champ-mdp-bis label{
     font-size: 16px;
     margin-bottom: 5px;
     display: block;
@@ -48,7 +51,8 @@
   .inscription-page .champ-prenom input,
   .inscription-page .champ-nom input,
   .inscription-page .champ-email input,
-  .inscription-page .champ-mdp input {
+  .inscription-page .champ-mdp input ,
+  .inscription-page .champ-mdp-bis input{
     width: 90%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -72,3 +76,7 @@
     background: #0056b3;
   }
   
+  .error-inscription{
+    color:red;
+    padding:10px;
+  }

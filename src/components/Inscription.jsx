@@ -79,7 +79,7 @@ function Inscription() {
           />
         </div>
         <div className="champ-mdp">
-          <label>Mot de passe</label>
+          <label>Mdp</label>
           <input
             type="password"
             value={mdp}
@@ -87,7 +87,7 @@ function Inscription() {
           />
         </div>
         <div className="champ-mdp-bis">
-          <label>Mot de passe bis</label>
+          <label>Confirmation mdp</label>
           <br></br>
           <input
             type="password"
@@ -97,7 +97,7 @@ function Inscription() {
         </div>
         <button onClick={handleInscription}>S'inscrire</button>
         <br></br>
-        <div className="error">{error}</div>
+        {error && <div className="error-inscription" dangerouslySetInnerHTML={{ __html: error }}></div>}
       </form>
     </div>
   );

@@ -51,22 +51,43 @@ function Panier() {
     return (
         <div className='element-panier'>
             <h1>Panier</h1>
-            <ul>
-                {localItems.map((item, index) => (
-                    <li key={index}>
-                        {item.name} - Quantité : {item.quantity} - Prix : {item.price} - Total : {item.quantity * item.price}
-                        <button className="btn-ligne" onClick={() => handleDecrement(item)}>-</button>{item.quantity}
-                        <button className="btn-ligne" onClick={() => handleIncrement(item)}>+</button>
-                        <button className="btn-remove" onClick={() => handleRemove(item)}>Supprimer</button>
-                    </li>
-                ))}
-                
-            </ul>
-            
-            {cartTotal > 0 ? (
-                <div>Total du panier : {cartTotal}</div>
+            {localItems.length > 0 ? (
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Image</th>
+                            <th>Quantité</th>
+                            <th>Prix unitaire</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {localItems.map((item, index) => (
+                            <tr key={index}>
+                                <td>{item.title}</td>
+                                <td><img className="img-panier" src={'/images/' + item.image}></img></td>
+                                <td>
+                                    <button className="btn-ligne" onClick={() => handleDecrement(item)}>-</button>
+                                    {item.quantity}
+                                    <button className="btn-ligne" onClick={() => handleIncrement(item)}>+</button>
+                                </td>
+                                <td className='td-prix'>{item.price} €</td>
+                                <td className='td-prix'>{item.quantity * item.price} €</td>
+                                <td>
+                                    <button className="btn-remove" onClick={() => handleRemove(item)}>Supprimer</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             ) : (
                 <h1>Le panier est vide</h1>
+            )}
+
+            {cartTotal > 0 && (
+                <div className='total-panier'>Total du panier : {cartTotal} €</div>
             )}
         </div>
     );

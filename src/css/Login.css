@@ -9,6 +9,7 @@
   height: 100vh;
   font-family: Arial, sans-serif;
   background: #f2f2f2;
+  padding-top: 50px;
 }
 
 /* Styles for the title "Connexion" */
@@ -78,9 +79,9 @@
   background: #0056b3;
 }
 
-.error{
+.error-login{
   color:red;
-  font-size: 1.2em;
+  
   text-align: center;
   padding:10px;
 }
