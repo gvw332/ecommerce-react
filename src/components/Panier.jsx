@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCart } from 'react-use-cart';
 import '../css/Panier.css';
-
+import { Link } from 'react-router-dom';
 
 function Panier() {
     const { items, cartTotal, updateItemQuantity, removeItem } = useCart();
@@ -89,6 +89,8 @@ function Panier() {
             {cartTotal > 0 && (
                 <div className='total-panier'>Total du panier : {cartTotal} €</div>
             )}
+
+            <Link to={'/paiement'}>Payer</Link>
         </div>
     );
 }

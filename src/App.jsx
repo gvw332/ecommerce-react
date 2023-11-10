@@ -9,7 +9,9 @@ import Inscription from "./components/Inscription";
 import Addproduct from "./components/Addproduct";
 import Details from "./components/Details";
 import Panier from "./components/Panier";
+import Paiement from "./components/Paiement";
 import { Page404 } from "./components/Page404";
+
 
 
 // Créez un contexte pour l'état de l'utilisateur
@@ -30,6 +32,7 @@ function App() {
             <Route path="/add-product" element={<Addproduct />} />
             <Route path="/details/:title" element={<Details />} />
             <Route path="/panier" element={<Panier />} />
+            <Route path="/paiement" element={<Paiement />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </UserContext.Provider>
