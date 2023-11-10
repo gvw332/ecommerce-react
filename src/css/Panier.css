@@ -4,7 +4,7 @@
     padding: 20px;
     margin-bottom: 20px;
     background: #f2f2f2;
-    height:100vh;
+    height: 100vh;
 }
 
 /* Style pour le titre "Panier" */
@@ -67,38 +67,78 @@
     text-align: center;
 }
 
-.img-panier{
+.img-panier {
     max-width: 90px;
-    height:90px;
+    height: 90px;
     object-fit: contain;
-    width:50%;
+    width: 50%;
     border-radius: 8%;
 }
+
 table {
-    width:80%;
-    margin:auto;
+    width: 80%;
+    margin: auto;
     border: 1px solid #ccc;
 }
+
 td {
     border-bottom: 1px solid #ccc;
 }
-th{
+
+th {
     border-bottom: 1px solid #ccc;
     background-color: #007BFF;
+
 }
-thead{
-    color:rgb(236, 236, 236);
+
+thead {
+    color: rgb(214, 239, 237);
     font-size: 1.5em;
 }
-tbody{
+
+tbody {
     text-align: center;
-    
+
 }
-.td-prix{
+
+.td-prix {
     text-align: center;
 }
-.total-panier{
+
+.total-panier {
     text-align: center;
-    color:#0056b3;
+    color: #0056b3;
     font-size: 1.7em;
+}
+
+@media only screen and (max-width: 600px) {
+    .element-panier {
+        font-size: 0.8em;
+    }
+
+    table {
+        font-size: 0.5em;
+        width: 98%;
+
+    }
+
+    tr {
+        font-size:1.5em;
+    }
+
+    td {
+        font-size: 1.3em;
+    }
+
+    .element-panier .btn-ligne {
+        font-size: 0.8em;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .element-panier .btn-remove {
+        font-size: 0.5em;
+    }
 }

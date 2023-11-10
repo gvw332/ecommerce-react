@@ -34,9 +34,7 @@ function Accueil() {
 
             {isAdmin && <div className="btn-ajout-produit">
                 <Link to="/add-product">
-                <button class="custom-btn btn-12"><span>+</span><span>Ajouter un produit</span></button>
-               
-
+                    <button class="custom-btn btn-12"><span>+</span><span>Ajouter un produit</span></button>
                 </Link></div>
             }
 
@@ -48,17 +46,17 @@ function Accueil() {
                     {Array.isArray(data) ? (
                         data.map((item, key) => (
 
-
-                            <Card
-                                id={item.id}
-                                key={key}
-                                image={`images/${item.image}`}
-                                title={item.title}
-                                price={item.price}
-                                details={item.details}
-                                item={item}
-                            />
-
+                            <div className="card-accueil">
+                                <Card
+                                    id={item.id}
+                                    key={key}
+                                    image={`images/${item.image}`}
+                                    title={item.title}
+                                    price={item.price}
+                                    details={item.details}
+                                    item={item}
+                                />
+                            </div>
 
                         ))
                     ) : (

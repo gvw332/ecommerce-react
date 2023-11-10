@@ -10,7 +10,6 @@ const Card = (props) => {
     navigate('/details/' + title);
   };
   return (
-
     <div className="card">
       <div onClick={() => handleDetails(props.title)} className='click-pour-details'>        
         <img src={props.image} alt={props.title} />
@@ -20,8 +19,6 @@ const Card = (props) => {
       <button onClick={() => addItem(props.item)}>Ajouter au panier</button>
     </div>
   );
-
-
 };
 
 export default Card;

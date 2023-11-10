@@ -47,7 +47,7 @@ function Addproduct() {
 
   return (
     <div className="Addproduct-page">
-      <h2>Addproduct</h2>
+      <h2>Ajout produit</h2>
       <form onSubmit={handleSubmit}>
         <div className="ajout-image">
           <label>Image:</label>

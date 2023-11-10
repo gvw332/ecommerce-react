@@ -30,7 +30,7 @@ export default function Navigation() {
 
       <div className="auth">
         {(isAuth) &&
-          <div className="bienvenue"><h5>Bienvenue à toi {user.pseudo}</h5>
+          <div className="bienvenue"><h5>Bonjour: {user.pseudo}</h5>
             
           </div>
         }
