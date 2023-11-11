@@ -61,6 +61,7 @@ function Accueil() {
                         ))
                     ) : (
                         <p>Les données ne sont pas un tableau valide.</p>
+                        
                     )}
                 </div>
             )}
