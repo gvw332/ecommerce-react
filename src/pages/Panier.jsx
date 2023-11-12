@@ -82,15 +82,19 @@ function Panier() {
                         ))}
                     </tbody>
                 </table>
+
             ) : (
                 <h1>Le panier est vide</h1>
             )}
 
             {cartTotal > 0 && (
-                <div className='total-panier'>Total du panier : {cartTotal} €</div>
+                <>
+                    <div className='total-panier'>Total du panier : {cartTotal} €</div>
+                    <Link to={'/paiement'}>Payer</Link>
+                </>
             )}
 
-            <Link to={'/paiement'}>Payer</Link>
+
         </div>
     );
 }

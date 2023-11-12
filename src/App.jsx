@@ -3,14 +3,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "react-use-cart";
 
 import Navigation from "./components/Navigation";
-import Accueil from "./components/Accueil";
-import Login from "./components/Login";
-import Inscription from "./components/Inscription";
-import Addproduct from "./components/Addproduct";
-import Details from "./components/Details";
-import Panier from "./components/Panier";
-import Paiement from "./components/Paiement";
-import { Page404 } from "./components/Page404";
+import Accueil from "./pages/Accueil";
+import Login from "./pages/Login";
+import Inscription from "./pages/Inscription";
+import Addproduct from "./pages/Addproduct";
+import Details from "./pages/Details";
+import Panier from "./pages/Panier";
+import Paiement from "./pages/Paiement";
+import SuccessPaiement from "./pages/Success-Paiement";
+import { Page404 } from "./pages/Page404";
 
 
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/details/:title" element={<Details />} />
             <Route path="/panier" element={<Panier />} />
             <Route path="/paiement" element={<Paiement />} />
+            <Route path="/success-paiement" element={<SuccessPaiement />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </UserContext.Provider>
