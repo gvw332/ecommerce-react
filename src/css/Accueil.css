@@ -4,10 +4,20 @@
   margin: 0;
   padding: 0;
 }
-
-.accueil {
+body{
+  background-image: url('../../public/images/fond-ecran.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed; /* Ceci fixe l'arrière-plan par rapport à la fenêtre d'affichage */
+}
+.accueil {  
   padding: 50px;
-  background: #f2f2f2;
+  background-image: url('../../public/images/fond-ecran.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed; /* Ceci fixe l'arrière-plan par rapport à la fenêtre d'affichage */
   height: 100%;
 }
 .cards-container {
@@ -20,11 +30,7 @@
   gap: 15px;
 }
 
-.card-accueil:hover{
-  border:3px solid rgb(244, 255, 160);
-  border-radius:12px;
-  box-shadow:none;
-}
+
 
 h1 {
   text-align: center;
@@ -149,7 +155,7 @@ h1 {
   
 }
 
-}
+
 @media only screen and (max-width: 400px) {
 
   .card-accueil{

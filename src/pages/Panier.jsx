@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useCart } from 'react-use-cart';
 import '../css/Panier.css';
 import { Link } from 'react-router-dom';
+import { IoTrashOutline } from "react-icons/io5";
 
 function Panier() {
     const { items, cartTotal, updateItemQuantity, removeItem } = useCart();
@@ -11,7 +12,13 @@ function Panier() {
         // Mettez à jour l'état local chaque fois que les articles changent
         setLocalItems(items);
     }, [items]);
-
+    function formatNumber(number) {
+        return number.toLocaleString('fr-BE', {
+            style: 'decimal',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
     const handleRemove = (item) => {
         removeItem(item.id);
     }
@@ -74,9 +81,10 @@ function Panier() {
                                     <button className="btn-ligne" onClick={() => handleIncrement(item)}>+</button>
                                 </td>
                                 <td className='td-prix'>{item.price} €</td>
-                                <td className='td-prix'>{item.quantity * item.price} €</td>
+                                <td className='td-prix'>{formatNumber(item.quantity * item.price)} €</td>
                                 <td>
-                                    <button className="btn-remove" onClick={() => handleRemove(item)}>Supprimer</button>
+                                    <button className="btn-remove" onClick={() => handleRemove(item)}>
+                                    <IoTrashOutline className="icon-style" size="22"/></button>
                                 </td>
                             </tr>
                         ))}
@@ -89,8 +97,9 @@ function Panier() {
 
             {cartTotal > 0 && (
                 <>
-                    <div className='total-panier'>Total du panier : {cartTotal} €</div>
-                    <Link to={'/paiement'}>Payer</Link>
+                    <div className='total-panier'>Total du panier : {formatNumber(cartTotal)} €</div>
+                    <div className='btn-paiement'><Link className='btn-paiement-lien' to={'/paiement'}>Payer</Link></div>
+                    
                 </>
             )}
 

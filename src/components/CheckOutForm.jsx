@@ -10,7 +10,13 @@ export default function CheckOutForm({ panier }) {
   const { cartTotal,emptyCart} = useCart();
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
-
+  function formatNumber(number) {
+    return number.toLocaleString('fr-BE', {
+        style: 'decimal',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -54,7 +60,7 @@ export default function CheckOutForm({ panier }) {
               
             </>
           ))}
-          <div className="total">Total: {cartTotal} €</div>
+          <div className="total">Total: {formatNumber(cartTotal)} €</div>
         </ul>
       </div>
       <div className="bloc-droit">

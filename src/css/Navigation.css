@@ -21,7 +21,9 @@ nav {
     height: 125px;
     object-fit: contain;
     border-radius: 10%;
-    border: 3px solid rgb(210, 226, 85);
+    /* border: 3px solid rgb(210, 226, 85); */
+    color:white;
+
 }
 
 .bienvenue h5 {

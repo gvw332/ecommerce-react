@@ -7,15 +7,10 @@
     width: 150px; /* Réduisez la largeur ici */
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: width 0.2s, height 0.2s;
+    background-color: #f2f2f2;
 
   }
-  .card:hover {
-    
-    
-    width: 180px;
-    height: auto;
-  }
+
 
   .click-pour-details img {
     object-fit: contain;

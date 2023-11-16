@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import { useUserContext } from "../App";
 import { PiShoppingCartBold } from "react-icons/pi";
-
+import { IoTrashOutline } from "react-icons/io5";
 
 export default function Navigation() {
   const { totalItems } = useCart();

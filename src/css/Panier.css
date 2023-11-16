@@ -3,7 +3,11 @@
     border: 1px solid #ccc;
     padding: 20px;
     margin-bottom: 20px;
-    background: #f2f2f2;
+    background-image: url('../../public/images/fond-ecran.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Ceci fixe l'arrière-plan par rapport à la fenêtre d'affichage */
     height: 100vh;
 }
 
@@ -79,6 +83,7 @@ table {
     width: 80%;
     margin: auto;
     border: 1px solid #ccc;
+    background-color: #f2f2f2;
 }
 
 td {
@@ -92,13 +97,27 @@ th {
 }
 
 thead {
-    color: rgb(214, 239, 237);
+    color: white;
+    text-shadow: 
+      -1px -1px 0 #007BFF,
+      1px -1px 0 #007BFF,
+      -1px 1px 0 #007BFF,
+      1px 1px 0 #007BFF;
     font-size: 1.5em;
 }
 
 tbody {
     text-align: center;
 
+}
+.btn-ligne{
+    border-radius: 10%;
+    width:27px;
+    height:27px;
+
+}
+.btn-remove{
+    border-radius: 10%;
 }
 
 .td-prix {
@@ -109,6 +128,32 @@ tbody {
     text-align: center;
     color: #0056b3;
     font-size: 1.7em;
+}
+.btn-paiement{
+   text-align: center;
+    width: 100px;
+    padding:10px;
+    margin:50px auto;
+   
+    background-color:rgb(0,123,255); 
+    color:black;
+    font-size: 2em;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.btn-paiement:hover{
+
+     background-color:rgb(65, 252, 65);
+     color:rgb(0, 0, 0);
+     text-decoration: none;
+
+ }
+ .btn-paiement a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+ }
+ .btn-paiement:hover a{
+    color: rgb(0, 0, 0);
 }
 
 @media only screen and (max-width: 600px) {
