@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext  } from "react";
 import "../css/Inscription.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ function Inscription() {
   const [mdpbis, setMdpbis] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [myURL, setMyURL] = useState('');
 
   const handleInscription = (e) => {
     e.preventDefault();
@@ -22,14 +23,27 @@ function Inscription() {
     formData.append('mail', mail);
     formData.append('mdp', mdp);
     formData.append('mdpbis', mdpbis);
-   
-
     axios.post('http://localhost:80/api-php-react/inscription/', formData)
-      .then((response) => {
+    .then((response) => {
        
+        if (response.data.status === 1) {
+
+            navigate('/');
+        } else {
+            setError(response.data.message);
+        }
+    })
+    .catch((error) => {
+        console.error("Erreur lors de la récupération des données : " + error);
+    });
+  }
+
+  function getInscription() {
+    axios.get(myURL + '/inscription/')
+      .then((response) => {
 
         if (response.data.message === 'OK, bien enregistré') {
-            navigate('/login');
+          navigate('/login');
         } else {
           console.log(response.data);
           setError(response.data);
@@ -39,7 +53,8 @@ function Inscription() {
         console.error("Erreur de sauvegarde : " + error);
       });
 
-  };
+  }
+
 
   return (
     <div className="inscription-page">
@@ -100,7 +115,7 @@ function Inscription() {
         {error && <div className="error-inscription" dangerouslySetInnerHTML={{ __html: error }}></div>}
       </form>
     </div>
-  );
+  )
 }
 
 export default Inscription;

@@ -1,17 +1,18 @@
-
+import React, { useContext } from "react";
 import "../css/Navigation.css";
 import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
-import { useUserContext } from "../App";
+import { UserContext } from "../App";
 import { PiShoppingCartBold } from "react-icons/pi";
 import { IoTrashOutline } from "react-icons/io5";
 
+
 export default function Navigation() {
   const { totalItems } = useCart();
-  const { user, setUser } = useUserContext();
+  const { user, setUser } = useContext(UserContext);
   const isAuth = (user.niveau >= 1)
   const { emptyCart } = useCart();
-
+  
   const handleLogout = () => {
     // Utilisez window.confirm pour demander une confirmation à l'utilisateur
     const confirmLogout = window.confirm("Êtes-vous sûr de vouloir vous déconnecter ?");

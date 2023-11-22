@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext, useEffect} from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "react-use-cart";
 
@@ -13,31 +13,57 @@ import Paiement from "./pages/Paiement";
 import SuccessPaiement from "./pages/Success-Paiement";
 import { Page404 } from "./pages/Page404";
 
-
-
-// Créez un contexte pour l'état de l'utilisateur
-const UserContext = React.createContext();
+export const GetUrl = createContext();
+export const UserContext = createContext();
 
 function App() {
+  // const savedUser = JSON.parse(localStorage.getItem('user')) || {};
   const [user, setUser] = useState({}); // Définissez votre état utilisateur ici
+  
+  const apiUrl =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:80/api-php-react'
+      : 'https://api.gvw-tech.be/';
 
+    
+
+      useEffect(() => {
+        try {
+          // Récupération de l'utilisateur depuis le localStorage
+          const savedUser = JSON.parse(localStorage.getItem('user'));
+          if (savedUser) {
+            setUser(savedUser);
+          }
+        } catch (error) {
+          console.error("Erreur lors du chargement de l'utilisateur du localStorage", error);
+          // Gérer l'erreur ou réinitialiser l'état 'user' si nécessaire
+        }
+      }, []);
+    
+      useEffect(() => {
+        // Mise à jour du localStorage lorsque 'user' change
+        localStorage.setItem('user', JSON.stringify(user));
+      }, [user]);
+    
   return (
     <div>
       <CartProvider>
-        <UserContext.Provider value={{ user, setUser }}>
-          <Navigation />
-          <Routes>
-            <Route path="/" element={<Accueil />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/inscription" element={<Inscription />} />
-            <Route path="/add-product" element={<Addproduct />} />
-            <Route path="/details/:title" element={<Details />} />
-            <Route path="/panier" element={<Panier />} />
-            <Route path="/paiement" element={<Paiement />} />
-            <Route path="/success-paiement" element={<SuccessPaiement />} />
-            <Route path="*" element={<Page404 />} />
-          </Routes>
-        </UserContext.Provider>
+        <GetUrl.Provider value={apiUrl}>
+          <UserContext.Provider value={{ user, setUser }}>
+            <Navigation />
+            <Routes>
+              <Route path="/" element={<Accueil />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/inscription" element={<Inscription />} />
+              <Route path="/add-product" element={<Addproduct />} />
+              <Route path="/details/:title" element={<Details />} />
+              <Route path="/panier" element={<Panier />} />
+              <Route path="/paiement" element={<Paiement />} />
+              <Route path="/success-paiement" element={<SuccessPaiement />} />
+              <Route path="*" element={<Page404 />} />
+            </Routes>
+          </UserContext.Provider>
+        </GetUrl.Provider>
       </CartProvider>
     </div>
   );
@@ -45,7 +71,3 @@ function App() {
 
 export default App;
 
-// Utilisez ce hook personnalisé pour accéder à l'état utilisateur dans vos composants
-export function useUserContext() {
-  return React.useContext(UserContext);
-}

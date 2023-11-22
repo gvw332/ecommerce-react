@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useContext  } from "react";
 import "../css/Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useUserContext } from "../App";
+import { UserContext } from "../App";
 
 
 function Login() {
@@ -11,7 +11,8 @@ function Login() {
     const [mdp, setMdp] = useState("");
     const [error, setError] = useState("");
     const [msg, setMsg] = useState("");
-    const { user, setUser } = useUserContext();
+    const { user, setUser } = useContext(UserContext);
+    
 
 
 

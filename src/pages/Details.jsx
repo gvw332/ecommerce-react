@@ -10,6 +10,7 @@ const Details = () => {
   const { title } = useParams();
   const navigate = useNavigate();
   const formData = new FormData();
+  const [shouldFetchProducts, setShouldFetchProducts] = useState(false);
   formData.append('title', title);
   useEffect(() => {
     getProduct()

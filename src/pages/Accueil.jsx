@@ -1,32 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../css/Accueil.css";
 import Card from "../components/Card";
-import { useUserContext } from "../App";
-
+import { UserContext } from "../App";
+import { GetUrl } from "../App";
 
 
 function Accueil() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { user, setUser } = useUserContext();
-    const isAdmin = (user.niveau === 1);
+    const myUrl = useContext(GetUrl)
+    const { user, setUser } = useContext(UserContext);
+    const isAdmin = (user.niveau === 1);   
+    
+    console.log("user: " + user.pseudo); 
+    useEffect(() => {        
+        
 
-    useEffect(() => {
-        // Utilisez Axios pour récupérer les données depuis votre API
-        axios.get("http://localhost:80/api-php-react/produits")
-            .then((response) => {
-                setData(response.data); // Mettez à jour l'état avec les données reçues
-                setLoading(false); // Mettez à jour l'état de chargement
+            getProducts();   
+    }, []);
+
+    function getProducts() {
+              
+        axios.get(myUrl + '/produits/')
+            .then( (response)=> {
+               
+                if (response.data){                    
+                    setData(response.data);
+                    console.log("Réponse success",data);
+                    setLoading(false);
+                }
             })
-            .catch((error) => {
+            .catch(function (error) {
                 console.error("Erreur lors de la récupération des données : " + error);
             });
-    }, []); // Le tableau vide [] signifie que cela s'exécute une seule fois après le rendu initial
-
-
-
+    }
 
 
     return (
