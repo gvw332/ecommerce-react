@@ -3,7 +3,9 @@ import "../css/Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../App";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { GetUrl } from "../App";
 
 function Login() {
     const navigate = useNavigate();
@@ -12,21 +14,24 @@ function Login() {
     const [error, setError] = useState("");
     const [msg, setMsg] = useState("");
     const { user, setUser } = useContext(UserContext);
-    
-
+    const myUrl = useContext(GetUrl);
 
 
     const handleSubmit = (e) => {
+
         e.preventDefault();
         const formData = new FormData();
         formData.append('mail', mail);
         formData.append('mdp', mdp);
 
 
-        axios.post('http://localhost:80/api-php-react/login/', formData)
+        axios.post(`${myUrl}/login/`, formData)
             .then((response) => {
                 const userData = response.data.user;
                 if (response.data.message === 'Connexion réussie') {
+                    toast.success(`Connexion réussie, bienvenue  ${userData.pseudo}`, {
+                        position: toast.POSITION.TOP_CENTER,
+                    });
                     // Créez un objet "niveaux" pour stocker les niveaux de l'utilisateur
                     const niveaux = {
                         isAdmin: userData.niveau === 1,

@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect} from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "react-use-cart";
 
@@ -13,38 +13,39 @@ import Paiement from "./pages/Paiement";
 import SuccessPaiement from "./pages/Success-Paiement";
 import { Page404 } from "./pages/Page404";
 
-export const GetUrl = createContext();
+
 export const UserContext = createContext();
+export const GetUrl = createContext();
 
 function App() {
-  // const savedUser = JSON.parse(localStorage.getItem('user')) || {};
   const [user, setUser] = useState({}); // Définissez votre état utilisateur ici
-  
+
   const apiUrl =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:80/api-php-react'
       : 'https://api.gvw-tech.be/';
 
-    
-
       useEffect(() => {
+        // Charger l'utilisateur à partir du sessionStorage au montage du composant
         try {
-          // Récupération de l'utilisateur depuis le localStorage
-          const savedUser = JSON.parse(localStorage.getItem('user'));
-          if (savedUser) {
+          const savedUser = JSON.parse(sessionStorage.getItem('user'));        
+      
+          if (savedUser && savedUser.pseudo) { // Ajoutez une condition pour vérifier si 'savedUser' est valide
             setUser(savedUser);
           }
         } catch (error) {
-          console.error("Erreur lors du chargement de l'utilisateur du localStorage", error);
-          // Gérer l'erreur ou réinitialiser l'état 'user' si nécessaire
+          console.error("Erreur lors du chargement de l'utilisateur du sessionStorage", error);
         }
       }, []);
-    
+      
       useEffect(() => {
-        // Mise à jour du localStorage lorsque 'user' change
-        localStorage.setItem('user', JSON.stringify(user));
+        // Mise à jour du sessionStorage lorsque 'user' change
+        if (user && user.pseudo) { // Ajoutez une condition pour vérifier si 'user' est valide avant de sauvegarder
+          sessionStorage.setItem('user', JSON.stringify(user));
+        }
       }, [user]);
-    
+      
+
   return (
     <div>
       <CartProvider>

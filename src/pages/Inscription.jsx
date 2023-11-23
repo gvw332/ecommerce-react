@@ -2,6 +2,9 @@ import React, { useState,useContext  } from "react";
 import "../css/Inscription.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { GetUrl } from "../App";
 
 function Inscription() {
   const [pseudo, setPseudo] = useState("");
@@ -12,7 +15,7 @@ function Inscription() {
   const [mdpbis, setMdpbis] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  const [myURL, setMyURL] = useState('');
+  const [myUrl, setMyUrl] = useContext(GetUrl);
 
   const handleInscription = (e) => {
     e.preventDefault();
@@ -23,12 +26,14 @@ function Inscription() {
     formData.append('mail', mail);
     formData.append('mdp', mdp);
     formData.append('mdpbis', mdpbis);
-    axios.post('http://localhost:80/api-php-react/inscription/', formData)
+    axios.post(myUrl + '/inscription/', formData)
     .then((response) => {
        
         if (response.data.status === 1) {
-
-            navigate('/');
+          toast.success("Vous avez bien été enregistré, veuillez vous connecter", {
+            position: toast.POSITION.TOP_CENTER,
+          }); 
+            navigate('/login');
         } else {
             setError(response.data.message);
         }
@@ -39,7 +44,7 @@ function Inscription() {
   }
 
   function getInscription() {
-    axios.get(myURL + '/inscription/')
+    axios.get(myUrl + '/inscription/')
       .then((response) => {
 
         if (response.data.message === 'OK, bien enregistré') {

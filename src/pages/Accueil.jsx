@@ -5,20 +5,20 @@ import "../css/Accueil.css";
 import Card from "../components/Card";
 import { UserContext } from "../App";
 import { GetUrl } from "../App";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Accueil() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const myUrl = useContext(GetUrl)
+    const myUrl = useContext(GetUrl);
     const { user, setUser } = useContext(UserContext);
     const isAdmin = (user.niveau === 1);   
     
-    console.log("user: " + user.pseudo); 
-    useEffect(() => {        
-        
 
+    useEffect(() => {        
             getProducts();   
+
     }, []);
 
     function getProducts() {
@@ -28,7 +28,6 @@ function Accueil() {
                
                 if (response.data){                    
                     setData(response.data);
-                    console.log("Réponse success",data);
                     setLoading(false);
                 }
             })
