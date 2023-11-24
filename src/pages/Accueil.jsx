@@ -15,25 +15,28 @@ function Accueil() {
     const { user, setUser } = useContext(UserContext);
     const isAdmin = (user.niveau === 1);   
     
-
+   
     useEffect(() => {        
             getProducts();   
 
     }, []);
-
+    
     function getProducts() {
               
         axios.get(myUrl + '/produits/')
             .then( (response)=> {
-               
+            
                 if (response.data){                    
                     setData(response.data);
                     setLoading(false);
                 }
+                
             })
+            
             .catch(function (error) {
                 console.error("Erreur lors de la récupération des données : " + error);
             });
+            
     }
 
 
@@ -42,7 +45,7 @@ function Accueil() {
 
             {isAdmin && <div className="btn-ajout-produit">
                 <Link to="/add-product">
-                    <button class="custom-btn btn-12"><span>+</span><span>Ajouter un produit</span></button>
+                    <button className="custom-btn btn-12"><span>+</span><span>Ajouter un produit</span></button>
                 </Link></div>
             }
 

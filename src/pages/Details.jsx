@@ -25,7 +25,7 @@ const Details = () => {
     
 
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         if (response.data === 'N\'existe pas') {
           navigate('/Page404/');
         } else {

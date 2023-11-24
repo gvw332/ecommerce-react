@@ -23,7 +23,7 @@ function App() {
   const apiUrl =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:80/api-php-react'
-      : 'https://api.gvw-tech.be/';
+      : 'https://api.gvw-tech.be';
 
       useEffect(() => {
         // Charger l'utilisateur à partir du sessionStorage au montage du composant
