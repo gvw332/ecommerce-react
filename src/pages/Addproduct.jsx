@@ -3,6 +3,8 @@ import "../css/Addproduct.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { GetUrl } from "../App";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Addproduct() {
 
@@ -37,13 +39,16 @@ function Addproduct() {
     console.log(image, formData, inputs);
     axios.post(myUrl + '/ajout-produit/', formData)
       .then((response) => {
+        toast.success('Nouveau produit bien enregistré', {
+          position: toast.POSITION.TOP_CENTER,
+        });
         navigate('/')
       })
       .catch((error) => {
         console.error("Erreur lors de la récupération des données : " + error);
       });
   }
-  
+
 
   return (
     <div className="Addproduct-page">
