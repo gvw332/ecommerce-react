@@ -13,6 +13,7 @@ function Addproduct() {
     price: "",   // Valeur par défaut vide pour le champ "Prix"
     details: ""  // Valeur par défaut vide pour le champ "Détails"
   });
+  const [error,setError] = useState("");
   const [image, setImage] = useState(null);
   const navigate = useNavigate();
   const myUrl = useContext(GetUrl)
@@ -39,10 +40,17 @@ function Addproduct() {
     console.log(image, formData, inputs);
     axios.post(myUrl + '/ajout-produit/', formData)
       .then((response) => {
-        toast.success('Nouveau produit bien enregistré', {
-          position: toast.POSITION.TOP_CENTER,
-        });
-        navigate('/')
+        setError('');
+        console.log(response.data.status, 44);
+        if (response.data.status === 1) {
+          toast.success('Nouveau produit bien enregistré', {
+            position: toast.POSITION.TOP_CENTER,
+          });
+          navigate('/')
+        }else{
+          setError('Ce titre existe déjà avec une autre image');
+        }
+
       })
       .catch((error) => {
         console.error("Erreur lors de la récupération des données : " + error);
@@ -63,6 +71,7 @@ function Addproduct() {
           {image && <img src={URL.createObjectURL(image)} alt="Aperçu de l'image" />}
         </div>
         <div>
+          <div className="error-title">{error}</div>
           <label>Titre:</label>
           <input
             type="text" name="title"

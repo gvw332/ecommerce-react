@@ -13,29 +13,35 @@ function Accueil() {
     const [loading, setLoading] = useState(true);
     const myUrl = useContext(GetUrl);
     const { user, setUser } = useContext(UserContext);
-    const isAdmin = (user.niveau === 1);   
+    const isAdmin = (user.niveau === 1);
+
     
-   
-    useEffect(() => {        
-            getProducts();
+    useEffect(() => {
+        getProducts();
     }, []);
-    
+
+
+    function handleProductDelete(productId) {
+        // Supprimez le produit du tableau data
+        const updatedData = data.filter(item => item.id !== productId);
+        setData(updatedData);
+    }
     function getProducts() {
-              
+
         axios.get(`${myUrl}/produits/`)
-            .then( (response)=> {
-            
-                if (response.data){                    
+            .then((response) => {
+
+                if (response.data) {
                     setData(response.data);
                     setLoading(false);
                 }
-                
+
             })
-            
+
             .catch(function (error) {
                 console.error("Erreur lors de la récupération des données : " + error);
             });
-            
+
     }
 
 
@@ -65,13 +71,16 @@ function Accueil() {
                                     price={item.price}
                                     details={item.details}
                                     item={item}
+                                    onDelete={() => handleProductDelete(item.id)}
                                 />
+
+
                             </div>
 
                         ))
                     ) : (
                         <p>Les données ne sont pas un tableau valide.</p>
-                        
+
                     )}
                 </div>
             )}

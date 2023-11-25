@@ -60,7 +60,7 @@ function App() {
               <Route path="/details/:title" element={<Details />} />
               <Route path="/panier" element={<Panier />} />
               <Route path="/paiement" element={<Paiement />} />
-              <Route path="/success-paiement" element={<SuccessPaiement />} />
+              <Route path="/success-paiement" element={<SuccessPaiement />} />              
               <Route path="*" element={<Page404 />} />
             </Routes>
           </UserContext.Provider>
