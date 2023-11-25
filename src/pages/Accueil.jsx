@@ -23,7 +23,7 @@ function Accueil() {
     
     function getProducts() {
               
-        axios.get(myUrl + '/produits/')
+        axios.get(`${myUrl}/produits/`)
             .then( (response)=> {
             
                 if (response.data){                    
