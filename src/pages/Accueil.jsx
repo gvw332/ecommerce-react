@@ -17,8 +17,7 @@ function Accueil() {
     
    
     useEffect(() => {        
-            getProducts();   
-
+            getProducts();
     }, []);
     
     function getProducts() {
