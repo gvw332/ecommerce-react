@@ -45,7 +45,7 @@ function App() {
         }
       }, [user]);
       
-
+      console.log(apiUrl, 48);
   return (
     <div>
       <CartProvider>

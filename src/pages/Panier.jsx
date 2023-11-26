@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { useCart } from 'react-use-cart';
 import '../css/Panier.css';
 import { Link } from 'react-router-dom';
 import { IoTrashOutline } from "react-icons/io5";
+import { GetUrl } from '../App'; // Chemin mis à jour
 
 function Panier() {
     const { items, cartTotal, updateItemQuantity, removeItem } = useCart();
     const [localItems, setLocalItems] = useState(items);
+    const myUrl = useContext(GetUrl);
 
     useEffect(() => {
         // Mettez à jour l'état local chaque fois que les articles changent
@@ -74,7 +76,9 @@ function Panier() {
                         {localItems.map((item, index) => (
                             <tr key={index}>
                                 <td>{item.title}</td>
-                                <td><img className="img-panier" src={'/images/' + item.image}></img></td>
+
+                                
+                                <td><img className="img-panier" src={`${myUrl}/public/images/${item.image}`}></img></td>
                                 <td>
                                     <button className="btn-ligne" onClick={() => handleDecrement(item)}>-</button>
                                     {item.quantity}

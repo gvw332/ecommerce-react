@@ -53,7 +53,7 @@ const StripeContainer = () => {
                     <CheckOutForm panier={items} />
                 </Elements>
             }
-            {!clientSecret && <div>Chargement en cours...</div>}
+          
         </>
     );
 };

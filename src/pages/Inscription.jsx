@@ -1,10 +1,11 @@
-import React, { useState,useContext  } from "react";
+import React, { useState,useContext} from "react";
 import "../css/Inscription.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GetUrl } from "../App";
+
 
 function Inscription() {
   const [pseudo, setPseudo] = useState("");
@@ -15,9 +16,10 @@ function Inscription() {
   const [mdpbis, setMdpbis] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  const [myUrl, setMyUrl] = useContext(GetUrl);
-
+  const myUrl = useContext(GetUrl);
+  
   const handleInscription = (e) => {
+  
     e.preventDefault();
     const formData = new FormData();
     formData.append('pseudo', pseudo);
@@ -26,7 +28,7 @@ function Inscription() {
     formData.append('mail', mail);
     formData.append('mdp', mdp);
     formData.append('mdpbis', mdpbis);
-    axios.post(myUrl + '/inscription/', formData)
+    axios.post(`${myUrl}/inscription/`, formData)
     .then((response) => {
        
         if (response.data.status === 1) {

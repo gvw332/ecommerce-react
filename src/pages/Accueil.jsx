@@ -26,6 +26,7 @@ function Accueil() {
         const updatedData = data.filter(item => item.id !== productId);
         setData(updatedData);
     }
+
     function getProducts() {
 
         axios.get(`${myUrl}/produits/`)
@@ -55,13 +56,10 @@ function Accueil() {
             }
 
             <h1>Liste des produits</h1>
-            {loading ? (
-                <p>Chargement en cours...</p>
-            ) : (
+
                 <div className="cards-container">
                     {Array.isArray(data) ? (
                         data.map((item, key) => (
-
                             <div className="card-accueil">
                                 <Card
                                     id={item.id}
@@ -72,18 +70,17 @@ function Accueil() {
                                     details={item.details}
                                     item={item}
                                     onDelete={() => handleProductDelete(item.id)}
+                                 
+                                    
                                 />
-
-
                             </div>
-
                         ))
                     ) : (
                         <p>Les données ne sont pas un tableau valide.</p>
 
                     )}
                 </div>
-            )}
+            
 
         </div>
     )

@@ -43,14 +43,18 @@ const Card = (props) => {
         console.error("Erreur lors de la récupération des données : " + error);
       });
   };
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+  };
 
 
 
   return (
     <div className="card">
       <div onClick={() => handleDetails(props.title)} className='click-pour-details'>
-        <img src={`${myUrl}/public/${props.image}`} alt={props.title} />
 
+        <img onContextMenu={handleContextMenu} src={`${myUrl}/public/${props.image}`} alt={props.title} />
+        
         <h3>{props.title}</h3>
         <p>{props.price} €</p>
       </div>
