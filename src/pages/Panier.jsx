@@ -57,6 +57,11 @@ function Panier() {
         }
     };
 
+    const handleContextMenu = (e) => {
+        e.preventDefault();
+      };
+    
+
     return (
         <div className='element-panier'>
             <h1>Panier</h1>
@@ -78,7 +83,7 @@ function Panier() {
                                 <td>{item.title}</td>
 
                                 
-                                <td><img className="img-panier" src={`${myUrl}/public/images/${item.image}`}></img></td>
+                                <td><img onContextMenu={handleContextMenu} className="img-panier" src={`${myUrl}/public/images/${item.image}`}></img></td>
                                 <td>
                                     <button className="btn-ligne" onClick={() => handleDecrement(item)}>-</button>
                                     {item.quantity}

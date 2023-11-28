@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { GetUrl } from '../App'; // Chemin mis à jour
+import { useCart } from 'react-use-cart';
 
 const Details = () => {
   const myUrl = useContext(GetUrl);
@@ -12,6 +13,7 @@ const Details = () => {
   const { title } = useParams();
   const navigate = useNavigate();
   const formData = new FormData();
+  const { addItem } = useCart();
   const [shouldFetchProducts, setShouldFetchProducts] = useState(false);
   formData.append('title', title);
   useEffect(() => {
@@ -36,19 +38,23 @@ const Details = () => {
         console.log(error);
       });
   }
-  function addToCart() {
-    console.log('Adding to cart');
-  }
+
+
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+  };
+
+
   return (
 
     <div className="details">
 
-      <img src={`${myUrl}/public/images/${details.image}`} />
+      <img onContextMenu={handleContextMenu} src={`${myUrl}/public/images/${details.image}`} />
       <h3>{details.title}</h3>
       <p>{details.price} €</p>
 
       {details && <p dangerouslySetInnerHTML={{ __html: details.details }}></p>}
-      <button onClick={addToCart}>Ajouter au panier</button>
+      <button onClick={() => addItem(details)}>Ajouter au panier</button>
     </div>
   );
 

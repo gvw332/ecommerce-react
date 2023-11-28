@@ -24,6 +24,10 @@ export default function CheckOutForm({ panier }) {
   const handleSubmit = async (e) => {
     // ... (le reste de la logique de handleSubmit)
   };
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+  };
+
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
@@ -45,7 +49,7 @@ export default function CheckOutForm({ panier }) {
                 <tr key={key}>
                   <td>{item.title}</td>
                   <td>
-                    <img className="img-panier" src={`${myUrl}/public/images/${item.image}`} alt={item.title} />
+                    <img onContextMenu={handleContextMenu} className="img-panier" src={`${myUrl}/public/images/${item.image}`} alt={item.title} />
                   </td>
                   <td>X {item.quantity}</td>
                   <td>{item.price} €</td>
