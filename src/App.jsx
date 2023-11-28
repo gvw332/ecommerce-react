@@ -42,10 +42,11 @@ function App() {
         // Mise à jour du sessionStorage lorsque 'user' change
         if (user && user.pseudo) { // Ajoutez une condition pour vérifier si 'user' est valide avant de sauvegarder
           sessionStorage.setItem('user', JSON.stringify(user));
+        }else{
+          localStorage.removeItem('react-use-cart');
         }
       }, [user]);
       
-      console.log(apiUrl, 48);
   return (
     <div>
       <CartProvider>

@@ -69,9 +69,7 @@ function Accueil() {
                                     price={item.price}
                                     details={item.details}
                                     item={item}
-                                    onDelete={() => handleProductDelete(item.id)}
-                                 
-                                    
+                                    onDelete={() => handleProductDelete(item.id)}     
                                 />
                             </div>
                         ))
